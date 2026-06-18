@@ -26,7 +26,7 @@ public class App
     	int x, id;
     	
     	do {
-    		System.out.println("Choice:\n1)Add\n2)Find by Id\n3)Retrive all rows\n4)Exit");
+    		System.out.println("Choice:\n1)Add\n2)Find by Id\n3)Retrive all rows\n4)update\n5)Exit");
     		x = sc.nextInt();
     		switch(x) {
     			case 1: {
@@ -49,7 +49,7 @@ public class App
     				
     				product = session.find(Product.class, id);
     				
-    				System.out.println(product);
+    				System.out.println("hi "+product);
     				
     				break;
     			}
@@ -60,17 +60,28 @@ public class App
     				}
     				break;
     			}
+    			case 4:{
+    				System.out.println("Enter id, name, price");
+    				product = new Product();
+    				product.setId(sc.nextInt());
+    				product.setName(sc.next());
+    				product.setPrice(sc.nextFloat());
+    				
+    				session.merge(product);
+    				transaction.commit();
+    				break;
+    			}
+    			case 5: {
+    				x = -1;
+    				break;
+    			}
     			default:{
     				System.out.println("Invalid case");
     			}
     		}
     	}while(x!=-1);
     	
-    	
-    	
     	session.close();
-    	
-    	System.out.println(product);
     	
     	Utility.terminate();
     	
