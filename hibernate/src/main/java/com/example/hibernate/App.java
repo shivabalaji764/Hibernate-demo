@@ -49,7 +49,7 @@ public class App
     				
     				product = session.find(Product.class, id);
     				
-    				System.out.println("hi "+product);
+    				System.out.println(product);
     				
     				break;
     			}
